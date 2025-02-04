@@ -1,0 +1,669 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/1/Mux8Way16.hdl
+/**
+ * 8-way 16-bit multiplexor:
+ * out = a if sel = 000
+ *       b if sel = 001
+ *       c if sel = 010
+ *       d if sel = 011
+ *       e if sel = 100
+ *       f if sel = 101
+ *       g if sel = 110
+ *       h if sel = 111
+ */
+CHIP Mux8Way16 {
+    IN a[16], b[16], c[16], d[16],
+       e[16], f[16], g[16], h[16],
+       sel[3];
+    OUT out[16];
+
+    PARTS:
+
+    Not(in=sel[0] , out=selnot0 );
+    Not(in=sel[1] , out=selnot1 );
+    Not(in=sel[2] , out=selnot2 );
+
+    And(a=a[0] , b=selnot0, out=oua0 );
+    And(a=oua0 , b=selnot1 , out=outa0 );
+    And(a=outa0 , b=selnot2 , out=outta0 );
+
+    And(a=a[1] , b=selnot0, out=oua1 );
+    And(a=oua1 , b=selnot1 , out=outa1 );
+    And(a=outa1 , b=selnot2 , out=outta1 );
+
+    And(a=a[2] , b=selnot0, out=oua2 );
+    And(a=oua2 , b=selnot1 , out=outa2 );
+    And(a=outa2 , b=selnot2 , out=outta2 );
+
+    And(a=a[3] , b=selnot0, out=oua3 );
+    And(a=oua3 , b=selnot1 , out=outa3 );
+    And(a=outa3 , b=selnot2 , out=outta3 );
+
+    And(a=a[4] , b=selnot0, out=oua4 );
+    And(a=oua4 , b=selnot1 , out=outa4 );
+    And(a=outa4 , b=selnot2 , out=outta4 );
+
+    And(a=a[5] , b=selnot0, out=oua5 );
+    And(a=oua5 , b=selnot1 , out=outa5 );
+    And(a=outa5 , b=selnot2 , out=outta5 );
+
+    And(a=a[6] , b=selnot0, out=oua6 );
+    And(a=oua6 , b=selnot1 , out=outa6 );
+    And(a=outa6 , b=selnot2 , out=outta6 );
+
+    And(a=a[7] , b=selnot0, out=oua7 );
+    And(a=oua7 , b=selnot1 , out=outa7 );
+    And(a=outa7 , b=selnot2 , out=outta7 );
+
+    And(a=a[8] , b=selnot0, out=oua8 );
+    And(a=oua8 , b=selnot1 , out=outa8 );
+    And(a=outa8 , b=selnot2 , out=outta8 );
+
+    And(a=a[9] , b=selnot0, out=oua9 );
+    And(a=oua9 , b=selnot1 , out=outa9 );
+    And(a=outa9 , b=selnot2 , out=outta9 );
+
+    And(a=a[10] , b=selnot0, out=oua10 );
+    And(a=oua10 , b=selnot1 , out=outa10 );
+    And(a=outa10 , b=selnot2 , out=outta10 );
+
+    And(a=a[11] , b=selnot0, out=oua11 );
+    And(a=oua11 , b=selnot1 , out=outa11 );
+    And(a=outa11 , b=selnot2 , out=outta11 );
+
+    And(a=a[12] , b=selnot0, out=oua12 );
+    And(a=oua12 , b=selnot1 , out=outa12 );
+    And(a=outa12 , b=selnot2 , out=outta12 );
+
+    And(a=a[13] , b=selnot0, out=oua13 );
+    And(a=oua13 , b=selnot1 , out=outa13 );
+    And(a=outa13 , b=selnot2 , out=outta13 );
+
+    And(a=a[14] , b=selnot0, out=oua14 );
+    And(a=oua14 , b=selnot1 , out=outa14 );
+    And(a=outa14 , b=selnot2 , out=outta14 );
+
+    And(a=a[15] , b=selnot0, out=oua15 );
+    And(a=oua15 , b=selnot1 , out=outa15 );
+    And(a=outa15 , b=selnot2 , out=outta15 );
+
+    And(a=b[0] , b=sel[0], out=oub0 );
+    And(a=oub0 , b=selnot1 , out=outb0 );
+    And(a=outb0 , b=selnot2 , out=outtb0 );
+
+    And(a=b[1] , b=sel[0], out=oub1 );
+    And(a=oub1 , b=selnot1 , out=outb1 );
+    And(a=outb1 , b=selnot2 , out=outtb1 );
+
+    And(a=b[2] , b=sel[0], out=oub2 );
+    And(a=oub2 , b=selnot1 , out=outb2 );
+    And(a=outb2 , b=selnot2 , out=outtb2 );
+
+    And(a=b[3] , b=sel[0], out=oub3 );
+    And(a=oub3 , b=selnot1 , out=outb3 );
+    And(a=outb3 , b=selnot2 , out=outtb3 );
+
+    And(a=b[4] , b=sel[0], out=oub4 );
+    And(a=oub4 , b=selnot1 , out=outb4 );
+    And(a=outb4 , b=selnot2 , out=outtb4 );
+
+    And(a=b[5] , b=sel[0], out=oub5 );
+    And(a=oub5 , b=selnot1 , out=outb5 );
+    And(a=outb5 , b=selnot2 , out=outtb5 );
+
+    And(a=b[6] , b=sel[0], out=oub6 );
+    And(a=oub6 , b=selnot1 , out=outb6 );
+    And(a=outb6 , b=selnot2 , out=outtb6 );
+
+    And(a=b[7] , b=sel[0], out=oub7 );
+    And(a=oub7 , b=selnot1 , out=outb7 );
+    And(a=outb7 , b=selnot2 , out=outtb7 );
+
+    And(a=b[8] , b=sel[0], out=oub8 );
+    And(a=oub8 , b=selnot1 , out=outb8 );
+    And(a=outb8 , b=selnot2 , out=outtb8 );
+
+    And(a=b[9] , b=sel[0], out=oub9 );
+    And(a=oub9 , b=selnot1 , out=outb9 );
+    And(a=outb9 , b=selnot2 , out=outtb9 );
+
+    And(a=b[10] , b=sel[0], out=oub10 );
+    And(a=oub10 , b=selnot1 , out=outb10 );
+    And(a=outb10 , b=selnot2 , out=outtb10 );
+
+    And(a=b[11] , b=sel[0], out=oub11 );
+    And(a=oub11 , b=selnot1 , out=outb11 );
+    And(a=outb11 , b=selnot2 , out=outtb11 );
+
+    And(a=b[12] , b=sel[0], out=oub12 );
+    And(a=oub12 , b=selnot1 , out=outb12 );
+    And(a=outb12 , b=selnot2 , out=outtb12 );
+
+    And(a=b[13] , b=sel[0], out=oub13 );
+    And(a=oub13 , b=selnot1 , out=outb13 );
+    And(a=outb13 , b=selnot2 , out=outtb13 );
+
+    And(a=b[14] , b=sel[0], out=oub14 );
+    And(a=oub14 , b=selnot1 , out=outb14 );
+    And(a=outb14 , b=selnot2 , out=outtb14 );
+
+    And(a=b[15] , b=sel[0], out=oub15 );
+    And(a=oub15 , b=selnot1 , out=outb15 );
+    And(a=outb15 , b=selnot2 , out=outtb15 );
+
+    And(a=c[0] , b=selnot0, out=ouc0 );
+    And(a=ouc0 , b=sel[1] , out=outc0 );
+    And(a=outc0 , b=selnot2 , out=outtc0 );
+
+    And(a=c[1] , b=selnot0, out=ouc1 );
+    And(a=ouc1 , b=sel[1] , out=outc1 );
+    And(a=outc1 , b=selnot2 , out=outtc1 );
+
+    And(a=c[2] , b=selnot0, out=ouc2 );
+    And(a=ouc2 , b=sel[1] , out=outc2 );
+    And(a=outc2 , b=selnot2 , out=outtc2 );
+
+    And(a=c[3] , b=selnot0, out=ouc3 );
+    And(a=ouc3 , b=sel[1] , out=outc3 );
+    And(a=outc3 , b=selnot2 , out=outtc3 );
+
+    And(a=c[4] , b=selnot0, out=ouc4 );
+    And(a=ouc4 , b=sel[1] , out=outc4 );
+    And(a=outc4 , b=selnot2 , out=outtc4 );
+
+    And(a=c[5] , b=selnot0, out=ouc5 );
+    And(a=ouc5 , b=sel[1] , out=outc5 );
+    And(a=outc5 , b=selnot2 , out=outtc5 );
+
+    And(a=c[6] , b=selnot0, out=ouc6 );
+    And(a=ouc6 , b=sel[1] , out=outc6 );
+    And(a=outc6 , b=selnot2 , out=outtc6 );
+
+    And(a=c[7] , b=selnot0, out=ouc7 );
+    And(a=ouc7 , b=sel[1] , out=outc7 );
+    And(a=outc7 , b=selnot2 , out=outtc7 );
+
+    And(a=c[8] , b=selnot0, out=ouc8 );
+    And(a=ouc8 , b=sel[1] , out=outc8 );
+    And(a=outc8 , b=selnot2 , out=outtc8 );
+
+    And(a=c[9] , b=selnot0, out=ouc9 );
+    And(a=ouc9 , b=sel[1] , out=outc9 );
+    And(a=outc9 , b=selnot2 , out=outtc9 );
+
+    And(a=c[10] , b=selnot0, out=ouc10 );
+    And(a=ouc10 , b=sel[1] , out=outc10 );
+    And(a=outc10 , b=selnot2 , out=outtc10 );
+
+    And(a=c[11] , b=selnot0, out=ouc11 );
+    And(a=ouc11 , b=sel[1] , out=outc11 );
+    And(a=outc11 , b=selnot2 , out=outtc11 );
+
+    And(a=c[12] , b=selnot0, out=ouc12 );
+    And(a=ouc12 , b=sel[1] , out=outc12 );
+    And(a=outc12 , b=selnot2 , out=outtc12 );
+
+    And(a=c[13] , b=selnot0, out=ouc13 );
+    And(a=ouc13 , b=sel[1] , out=outc13 );
+    And(a=outc13 , b=selnot2 , out=outtc13 );
+
+    And(a=c[14] , b=selnot0, out=ouc14 );
+    And(a=ouc14 , b=sel[1] , out=outc14 );
+    And(a=outc14 , b=selnot2 , out=outtc14 );
+
+    And(a=c[15] , b=selnot0, out=ouc15 );
+    And(a=ouc15 , b=sel[1] , out=outc15 );
+    And(a=outc15 , b=selnot2 , out=outtc15 );
+
+
+    And(a=d[0] , b=sel[0], out=oud0 );
+    And(a=oud0 , b=sel[1] , out=outd0 );
+    And(a=outd0 , b=selnot2 , out=outtd0 );
+
+    And(a=d[1] , b=sel[0], out=oud1 );
+    And(a=oud1 , b=sel[1] , out=outd1 );
+    And(a=outd1 , b=selnot2 , out=outtd1 );
+
+    And(a=d[2] , b=sel[0], out=oud2 );
+    And(a=oud2 , b=sel[1] , out=outd2 );
+    And(a=outd2 , b=selnot2 , out=outtd2 );
+
+    And(a=d[3] , b=sel[0], out=oud3 );
+    And(a=oud3 , b=sel[1] , out=outd3 );
+    And(a=outd3 , b=selnot2 , out=outtd3 );
+
+    And(a=d[4] , b=sel[0], out=oud4 );
+    And(a=oud4 , b=sel[1] , out=outd4 );
+    And(a=outd4 , b=selnot2 , out=outtd4 );
+
+    And(a=d[5] , b=sel[0], out=oud5 );
+    And(a=oud5 , b=sel[1] , out=outd5 );
+    And(a=outd5 , b=selnot2 , out=outtd5 );
+
+    And(a=d[6] , b=sel[0], out=oud6 );
+    And(a=oud6 , b=sel[1] , out=outd6 );
+    And(a=outd6 , b=selnot2 , out=outtd6 );
+
+    And(a=d[7] , b=sel[0], out=oud7 );
+    And(a=oud7 , b=sel[1] , out=outd7 );
+    And(a=outd7 , b=selnot2 , out=outtd7 );
+
+    And(a=d[8] , b=sel[0], out=oud8 );
+    And(a=oud8 , b=sel[1] , out=outd8 );
+    And(a=outd8 , b=selnot2 , out=outtd8 );
+
+    And(a=d[9] , b=sel[0], out=oud9 );
+    And(a=oud9 , b=sel[1] , out=outd9 );
+    And(a=outd9 , b=selnot2 , out=outtd9 );
+
+    And(a=d[10] , b=sel[0], out=oud10 );
+    And(a=oud10 , b=sel[1] , out=outd10 );
+    And(a=outd10 , b=selnot2 , out=outtd10 );
+
+    And(a=d[11] , b=sel[0], out=oud11 );
+    And(a=oud11 , b=sel[1] , out=outd11 );
+    And(a=outd11 , b=selnot2 , out=outtd11 );
+
+    And(a=d[12] , b=sel[0], out=oud12 );
+    And(a=oud12 , b=sel[1] , out=outd12 );
+    And(a=outd12 , b=selnot2 , out=outtd12 );
+
+    And(a=d[13] , b=sel[0], out=oud13 );
+    And(a=oud13 , b=sel[1] , out=outd13 );
+    And(a=outd13 , b=selnot2 , out=outtd13 );
+
+    And(a=d[14] , b=sel[0], out=oud14 );
+    And(a=oud14 , b=sel[1] , out=outd14 );
+    And(a=outd14 , b=selnot2 , out=outtd14 );
+
+    And(a=d[15] , b=sel[0], out=oud15 );
+    And(a=oud15 , b=sel[1] , out=outd15 );
+    And(a=outd15 , b=selnot2 , out=outtd15 );
+
+    And(a=e[0] , b=selnot0, out=oue0 );
+    And(a=oue0 , b=selnot1 , out=oute0 );
+    And(a=oute0 , b=sel[2] , out=outte0 );
+
+    And(a=e[1] , b=selnot0, out=oue1 );
+    And(a=oue1 , b=selnot1 , out=oute1 );
+    And(a=oute1 , b=sel[2] , out=outte1 );
+
+    And(a=e[2] , b=selnot0, out=oue2 );
+    And(a=oue2 , b=selnot1 , out=oute2 );
+    And(a=oute2 , b=sel[2] , out=outte2 );
+
+    And(a=e[3] , b=selnot0, out=oue3 );
+    And(a=oue3 , b=selnot1 , out=oute3 );
+    And(a=oute3 , b=sel[2] , out=outte3 );
+
+    And(a=e[4] , b=selnot0, out=oue4 );
+    And(a=oue4 , b=selnot1 , out=oute4 );
+    And(a=oute4 , b=sel[2] , out=outte4 );
+
+    And(a=e[5] , b=selnot0, out=oue5 );
+    And(a=oue5 , b=selnot1 , out=oute5 );
+    And(a=oute5 , b=sel[2] , out=outte5 );
+
+    And(a=e[6] , b=selnot0, out=oue6 );
+    And(a=oue6 , b=selnot1 , out=oute6 );
+    And(a=oute6 , b=sel[2] , out=outte6 );
+
+    And(a=e[7] , b=selnot0, out=oue7 );
+    And(a=oue7 , b=selnot1 , out=oute7 );
+    And(a=oute7 , b=sel[2] , out=outte7 );
+
+    And(a=e[8] , b=selnot0, out=oue8 );
+    And(a=oue8 , b=selnot1 , out=oute8 );
+    And(a=oute8 , b=sel[2] , out=outte8 );
+
+    And(a=e[9] , b=selnot0, out=oue9 );
+    And(a=oue9 , b=selnot1 , out=oute9 );
+    And(a=oute9 , b=sel[2] , out=outte9 );
+
+    And(a=e[10] , b=selnot0, out=oue10 );
+    And(a=oue10 , b=selnot1 , out=oute10 );
+    And(a=oute10 , b=sel[2] , out=outte10 );
+
+    And(a=e[11] , b=selnot0, out=oue11 );
+    And(a=oue11 , b=selnot1 , out=oute11 );
+    And(a=oute11 , b=sel[2] , out=outte11 );
+
+    And(a=e[12] , b=selnot0, out=oue12 );
+    And(a=oue12 , b=selnot1 , out=oute12 );
+    And(a=oute12 , b=sel[2] , out=outte12 );
+
+    And(a=e[13] , b=selnot0, out=oue13 );
+    And(a=oue13 , b=selnot1 , out=oute13 );
+    And(a=oute13 , b=sel[2] , out=outte13 );
+
+    And(a=e[14] , b=selnot0, out=oue14 );
+    And(a=oue14 , b=selnot1 , out=oute14 );
+    And(a=oute14 , b=sel[2] , out=outte14 );
+
+    And(a=e[15] , b=selnot0, out=oue15 );
+    And(a=oue15 , b=selnot1 , out=oute15 );
+    And(a=oute15 , b=sel[2] , out=outte15 );
+
+    And(a=f[0] , b=sel[0], out=ouf0 );
+    And(a=ouf0 , b=selnot1 , out=outf0 );
+    And(a=outf0 , b=sel[2] , out=outtf0 );
+
+    And(a=f[1] , b=sel[0], out=ouf1 );
+    And(a=ouf1 , b=selnot1 , out=outf1 );
+    And(a=outf1 , b=sel[2] , out=outtf1 );
+
+    And(a=f[2] , b=sel[0], out=ouf2 );
+    And(a=ouf2 , b=selnot1 , out=outf2 );
+    And(a=outf2 , b=sel[2] , out=outtf2 );
+
+    And(a=f[3] , b=sel[0], out=ouf3 );
+    And(a=ouf3 , b=selnot1 , out=outf3 );
+    And(a=outf3 , b=sel[2] , out=outtf3 );
+
+    And(a=f[4] , b=sel[0], out=ouf4 );
+    And(a=ouf4 , b=selnot1 , out=outf4 );
+    And(a=outf4 , b=sel[2] , out=outtf4 );
+
+    And(a=f[5] , b=sel[0], out=ouf5 );
+    And(a=ouf5 , b=selnot1 , out=outf5 );
+    And(a=outf5 , b=sel[2] , out=outtf5 );
+
+    And(a=f[6] , b=sel[0], out=ouf6 );
+    And(a=ouf6 , b=selnot1 , out=outf6 );
+    And(a=outf6 , b=sel[2] , out=outtf6 );
+
+    And(a=f[7] , b=sel[0], out=ouf7 );
+    And(a=ouf7 , b=selnot1 , out=outf7 );
+    And(a=outf7 , b=sel[2] , out=outtf7 );
+
+    And(a=f[8] , b=sel[0], out=ouf8 );
+    And(a=ouf8 , b=selnot1 , out=outf8 );
+    And(a=outf8 , b=sel[2] , out=outtf8 );
+
+    And(a=f[9] , b=sel[0], out=ouf9 );
+    And(a=ouf9 , b=selnot1 , out=outf9 );
+    And(a=outf9 , b=sel[2] , out=outtf9 );
+
+    And(a=f[10] , b=sel[0], out=ouf10 );
+    And(a=ouf10 , b=selnot1 , out=outf10 );
+    And(a=outf10 , b=sel[2] , out=outtf10 );
+
+    And(a=f[11] , b=sel[0], out=ouf11 );
+    And(a=ouf11 , b=selnot1 , out=outf11 );
+    And(a=outf11 , b=sel[2] , out=outtf11 );
+
+    And(a=f[12] , b=sel[0], out=ouf12 );
+    And(a=ouf12 , b=selnot1 , out=outf12 );
+    And(a=outf12 , b=sel[2] , out=outtf12 );
+
+    And(a=f[13] , b=sel[0], out=ouf13 );
+    And(a=ouf13 , b=selnot1 , out=outf13 );
+    And(a=outf13 , b=sel[2] , out=outtf13 );
+
+    And(a=f[14] , b=sel[0], out=ouf14 );
+    And(a=ouf14 , b=selnot1 , out=outf14 );
+    And(a=outf14 , b=sel[2] , out=outtf14 );
+
+    And(a=f[15] , b=sel[0], out=ouf15 );
+    And(a=ouf15 , b=selnot1 , out=outf15 );
+    And(a=outf15 , b=sel[2] , out=outtf15 );
+    
+    And(a=g[0] , b=selnot0, out=oug0 );
+    And(a=oug0 , b=sel[1] , out=outg0 );
+    And(a=outg0 , b=sel[2] , out=outtg0 );
+
+    And(a=g[1] , b=selnot0, out=oug1 );
+    And(a=oug1 , b=sel[1] , out=outg1 );
+    And(a=outg1 , b=sel[2] , out=outtg1 );
+
+    And(a=g[2] , b=selnot0, out=oug2 );
+    And(a=oug2 , b=sel[1] , out=outg2 );
+    And(a=outg2 , b=sel[2] , out=outtg2 );
+
+    And(a=g[3] , b=selnot0, out=oug3 );
+    And(a=oug3 , b=sel[1] , out=outg3 );
+    And(a=outg3 , b=sel[2] , out=outtg3 );
+
+    And(a=g[4] , b=selnot0, out=oug4 );
+    And(a=oug4 , b=sel[1] , out=outg4 );
+    And(a=outg4 , b=sel[2] , out=outtg4 );
+
+    And(a=g[5] , b=selnot0, out=oug5 );
+    And(a=oug5 , b=sel[1] , out=outg5 );
+    And(a=outg5 , b=sel[2] , out=outtg5 );
+
+    And(a=g[6] , b=selnot0, out=oug6 );
+    And(a=oug6 , b=sel[1] , out=outg6 );
+    And(a=outg6 , b=sel[2] , out=outtg6 );
+
+    And(a=g[7] , b=selnot0, out=oug7 );
+    And(a=oug7 , b=sel[1] , out=outg7 );
+    And(a=outg7 , b=sel[2] , out=outtg7 );
+
+    And(a=g[8] , b=selnot0, out=oug8 );
+    And(a=oug8 , b=sel[1] , out=outg8 );
+    And(a=outg8 , b=sel[2] , out=outtg8 );
+
+    And(a=g[9] , b=selnot0, out=oug9 );
+    And(a=oug9 , b=sel[1] , out=outg9 );
+    And(a=outg9 , b=sel[2] , out=outtg9 );
+
+    And(a=g[10] , b=selnot0, out=oug10 );
+    And(a=oug10 , b=sel[1] , out=outg10 );
+    And(a=outg10 , b=sel[2] , out=outtg10 );
+
+    And(a=g[11] , b=selnot0, out=oug11 );
+    And(a=oug11 , b=sel[1] , out=outg11 );
+    And(a=outg11 , b=sel[2] , out=outtg11 );
+
+    And(a=g[12] , b=selnot0, out=oug12 );
+    And(a=oug12 , b=sel[1] , out=outg12 );
+    And(a=outg12 , b=sel[2] , out=outtg12 );
+
+    And(a=g[13] , b=selnot0, out=oug13 );
+    And(a=oug13 , b=sel[1] , out=outg13 );
+    And(a=outg13 , b=sel[2] , out=outtg13 );
+
+    And(a=g[14] , b=selnot0, out=oug14 );
+    And(a=oug14 , b=sel[1] , out=outg14 );
+    And(a=outg14 , b=sel[2] , out=outtg14 );
+
+    And(a=g[15] , b=selnot0, out=oug15 );
+    And(a=oug15 , b=sel[1] , out=outg15 );
+    And(a=outg15 , b=sel[2] , out=outtg15 );
+
+    And(a=h[0] , b=sel[0], out=ouh0 );
+    And(a=ouh0 , b=sel[1] , out=outh0 );
+    And(a=outh0 , b=sel[2] , out=outth0 );
+
+    And(a=h[1] , b=sel[0], out=ouh1 );
+    And(a=ouh1 , b=sel[1] , out=outh1 );
+    And(a=outh1 , b=sel[2] , out=outth1 );
+
+    And(a=h[2] , b=sel[0], out=ouh2 );
+    And(a=ouh2 , b=sel[1] , out=outh2 );
+    And(a=outh2 , b=sel[2] , out=outth2 );
+
+    And(a=h[3] , b=sel[0], out=ouh3 );
+    And(a=ouh3 , b=sel[1] , out=outh3 );
+    And(a=outh3 , b=sel[2] , out=outth3 );
+
+    And(a=h[4] , b=sel[0], out=ouh4 );
+    And(a=ouh4 , b=sel[1] , out=outh4 );
+    And(a=outh4 , b=sel[2] , out=outth4 );
+
+    And(a=h[5] , b=sel[0], out=ouh5 );
+    And(a=ouh5 , b=sel[1] , out=outh5 );
+    And(a=outh5 , b=sel[2] , out=outth5 );
+
+    And(a=h[6] , b=sel[0], out=ouh6 );
+    And(a=ouh6 , b=sel[1] , out=outh6 );
+    And(a=outh6 , b=sel[2] , out=outth6 );
+
+    And(a=h[7] , b=sel[0], out=ouh7 );
+    And(a=ouh7 , b=sel[1] , out=outh7 );
+    And(a=outh7 , b=sel[2] , out=outth7 );
+
+    And(a=h[8] , b=sel[0], out=ouh8 );
+    And(a=ouh8 , b=sel[1] , out=outh8 );
+    And(a=outh8 , b=sel[2] , out=outth8 );
+
+    And(a=h[9] , b=sel[0], out=ouh9 );
+    And(a=ouh9 , b=sel[1] , out=outh9 );
+    And(a=outh9 , b=sel[2] , out=outth9 );
+
+    And(a=h[10] , b=sel[0], out=ouh10 );
+    And(a=ouh10 , b=sel[1] , out=outh10 );
+    And(a=outh10 , b=sel[2] , out=outth10 );
+
+    And(a=h[11] , b=sel[0], out=ouh11 );
+    And(a=ouh11 , b=sel[1] , out=outh11 );
+    And(a=outh11 , b=sel[2] , out=outth11 );
+
+    And(a=h[12] , b=sel[0], out=ouh12 );
+    And(a=ouh12 , b=sel[1] , out=outh12 );
+    And(a=outh12 , b=sel[2] , out=outth12 );
+
+    And(a=h[13] , b=sel[0], out=ouh13 );
+    And(a=ouh13 , b=sel[1] , out=outh13 );
+    And(a=outh13 , b=sel[2] , out=outth13 );
+
+    And(a=h[14] , b=sel[0], out=ouh14 );
+    And(a=ouh14 , b=sel[1] , out=outh14 );
+    And(a=outh14 , b=sel[2] , out=outth14 );
+
+    And(a=h[15] , b=sel[0], out=ouh15 );
+    And(a=ouh15 , b=sel[1] , out=outh15 );
+    And(a=outh15 , b=sel[2] , out=outth15 );
+
+    Or(a=outta0 , b=outtb0 , out=st0 );
+    Or(a=st0 , b=outtc0 , out=stt0 );
+    Or(a=stt0 , b=outtd0 , out=sttt0 );
+    Or(a=sttt0 , b=outte0 , out=stttt0 );
+    Or(a=stttt0 , b=outtf0 , out=sttttt0 );
+    Or(a=sttttt0 , b=outtg0 , out=stttttt0 );
+    Or(a=stttttt0 , b=outth0 , out=out[0] );
+
+    Or(a=outta1 , b=outtb1 , out=st1 );
+    Or(a=st1 , b=outtc1 , out=stt1 );
+    Or(a=stt1 , b=outtd1 , out=sttt1 );
+    Or(a=sttt1 , b=outte1 , out=stttt1 );
+    Or(a=stttt1 , b=outtf1 , out=sttttt1 );
+    Or(a=sttttt1 , b=outtg1 , out=stttttt1 );
+    Or(a=stttttt1 , b=outth1 , out=out[1] );
+
+    Or(a=outta2 , b=outtb2 , out=st2 );
+    Or(a=st2 , b=outtc2 , out=stt2 );
+    Or(a=stt2 , b=outtd2 , out=sttt2 );
+    Or(a=sttt2 , b=outte2 , out=stttt2 );
+    Or(a=stttt2 , b=outtf2 , out=sttttt2 );
+    Or(a=sttttt2 , b=outtg2 , out=stttttt2 );
+    Or(a=stttttt2 , b=outth2 , out=out[2] );
+
+    Or(a=outta3 , b=outtb3 , out=st3 );
+    Or(a=st3 , b=outtc3 , out=stt3 );
+    Or(a=stt3 , b=outtd3 , out=sttt3 );
+    Or(a=sttt3 , b=outte3 , out=stttt3 );
+    Or(a=stttt3 , b=outtf3 , out=sttttt3 );
+    Or(a=sttttt3 , b=outtg3 , out=stttttt3 );
+    Or(a=stttttt3 , b=outth3 , out=out[3] );
+
+    Or(a=outta4 , b=outtb4 , out=st4 );
+    Or(a=st4 , b=outtc4 , out=stt4 );
+    Or(a=stt4 , b=outtd4 , out=sttt4 );
+    Or(a=sttt4 , b=outte4 , out=stttt4 );
+    Or(a=stttt4 , b=outtf4 , out=sttttt4 );
+    Or(a=sttttt4 , b=outtg4 , out=stttttt4 );
+    Or(a=stttttt4 , b=outth4 , out=out[4] );
+
+    Or(a=outta5 , b=outtb5 , out=st5 );
+    Or(a=st5 , b=outtc5 , out=stt5 );
+    Or(a=stt5 , b=outtd5 , out=sttt5 );
+    Or(a=sttt5 , b=outte5 , out=stttt5 );
+    Or(a=stttt5 , b=outtf5 , out=sttttt5 );
+    Or(a=sttttt5 , b=outtg5 , out=stttttt5 );
+    Or(a=stttttt5 , b=outth5 , out=out[5] );
+
+    Or(a=outta6 , b=outtb6 , out=st6 );
+    Or(a=st6 , b=outtc6 , out=stt6 );
+    Or(a=stt6 , b=outtd6 , out=sttt6 );
+    Or(a=sttt6 , b=outte6 , out=stttt6 );
+    Or(a=stttt6 , b=outtf6 , out=sttttt6 );
+    Or(a=sttttt6 , b=outtg6 , out=stttttt6 );
+    Or(a=stttttt6 , b=outth6 , out=out[6] );
+
+    Or(a=outta7 , b=outtb7 , out=st7 );
+    Or(a=st7 , b=outtc7 , out=stt7 );
+    Or(a=stt7 , b=outtd7 , out=sttt7 );
+    Or(a=sttt7 , b=outte7 , out=stttt7 );
+    Or(a=stttt7 , b=outtf7 , out=sttttt7 );
+    Or(a=sttttt7 , b=outtg7 , out=stttttt7 );
+    Or(a=stttttt7 , b=outth7 , out=out[7] );
+
+    Or(a=outta8 , b=outtb8 , out=st8 );
+    Or(a=st8 , b=outtc8 , out=stt8 );
+    Or(a=stt8 , b=outtd8 , out=sttt8 );
+    Or(a=sttt8 , b=outte8 , out=stttt8 );
+    Or(a=stttt8 , b=outtf8 , out=sttttt8 );
+    Or(a=sttttt8 , b=outtg8 , out=stttttt8 );
+    Or(a=stttttt8 , b=outth8 , out=out[8] );
+
+    Or(a=outta9 , b=outtb9 , out=st9 );
+    Or(a=st9 , b=outtc9 , out=stt9 );
+    Or(a=stt9 , b=outtd9 , out=sttt9 );
+    Or(a=sttt9 , b=outte9 , out=stttt9 );
+    Or(a=stttt9 , b=outtf9 , out=sttttt9 );
+    Or(a=sttttt9 , b=outtg9 , out=stttttt9 );
+    Or(a=stttttt9 , b=outth9 , out=out[9] );
+
+    Or(a=outta10 , b=outtb10 , out=st10 );
+    Or(a=st10 , b=outtc10 , out=stt10 );
+    Or(a=stt10 , b=outtd10 , out=sttt10 );
+    Or(a=sttt10 , b=outte10 , out=stttt10 );
+    Or(a=stttt10 , b=outtf10 , out=sttttt10 );
+    Or(a=sttttt10 , b=outtg10 , out=stttttt10 );
+    Or(a=stttttt10 , b=outth10 , out=out[10] );
+
+    Or(a=outta11 , b=outtb11 , out=st11 );
+    Or(a=st11 , b=outtc11 , out=stt11 );
+    Or(a=stt11 , b=outtd11 , out=sttt11 );
+    Or(a=sttt11 , b=outte11 , out=stttt11 );
+    Or(a=stttt11 , b=outtf11 , out=sttttt11 );
+    Or(a=sttttt11 , b=outtg11 , out=stttttt11 );
+    Or(a=stttttt11 , b=outth11 , out=out[11] );
+
+    Or(a=outta12 , b=outtb12 , out=st12 );
+    Or(a=st12 , b=outtc12 , out=stt12 );
+    Or(a=stt12 , b=outtd12 , out=sttt12 );
+    Or(a=sttt12 , b=outte12 , out=stttt12 );
+    Or(a=stttt12 , b=outtf12 , out=sttttt12 );
+    Or(a=sttttt12 , b=outtg12 , out=stttttt12 );
+    Or(a=stttttt12 , b=outth12 , out=out[12] );
+
+    Or(a=outta13 , b=outtb13 , out=st13 );
+    Or(a=st13 , b=outtc13 , out=stt13 );
+    Or(a=stt13 , b=outtd13 , out=sttt13 );
+    Or(a=sttt13 , b=outte13 , out=stttt13 );
+    Or(a=stttt13 , b=outtf13 , out=sttttt13 );
+    Or(a=sttttt13 , b=outtg13 , out=stttttt13 );
+    Or(a=stttttt13 , b=outth13 , out=out[13] );
+
+    Or(a=outta14 , b=outtb14 , out=st14 );
+    Or(a=st14 , b=outtc14 , out=stt14 );
+    Or(a=stt14 , b=outtd14 , out=sttt14 );
+    Or(a=sttt14 , b=outte14 , out=stttt14 );
+    Or(a=stttt14 , b=outtf14 , out=sttttt14 );
+    Or(a=sttttt14 , b=outtg14 , out=stttttt14 );
+    Or(a=stttttt14 , b=outth14 , out=out[14] );
+
+    Or(a=outta15 , b=outtb15 , out=st15 );
+    Or(a=st15 , b=outtc15 , out=stt15 );
+    Or(a=stt15 , b=outtd15 , out=sttt15 );
+    Or(a=sttt15 , b=outte15 , out=stttt15 );
+    Or(a=stttt15 , b=outtf15 , out=sttttt15 );
+    Or(a=sttttt15 , b=outtg15 , out=stttttt15 );
+    Or(a=stttttt15 , b=outth15 , out=out[15] );
+
+}

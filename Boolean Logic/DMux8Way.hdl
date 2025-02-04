@@ -1,0 +1,60 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/1/DMux8Way.hdl
+/**
+ * 8-way demultiplexor:
+ * [a, b, c, d, e, f, g, h] = [in, 0,  0,  0,  0,  0,  0,  0] if sel = 000
+ *                            [0, in,  0,  0,  0,  0,  0,  0] if sel = 001
+ *                            [0,  0, in,  0,  0,  0,  0,  0] if sel = 010
+ *                            [0,  0,  0, in,  0,  0,  0,  0] if sel = 011
+ *                            [0,  0,  0,  0, in,  0,  0,  0] if sel = 100
+ *                            [0,  0,  0,  0,  0, in,  0,  0] if sel = 101
+ *                            [0,  0,  0,  0,  0,  0, in,  0] if sel = 110
+ *                            [0,  0,  0,  0,  0,  0,  0, in] if sel = 111
+ */
+CHIP DMux8Way {
+    IN in, sel[3];
+    OUT a, b, c, d, e, f, g, h;
+
+    PARTS:
+
+    Not(in=sel[0] , out=selnot0 );
+    Not(in=sel[1] , out=selnot1 );
+    Not(in=sel[2] , out=selnot2 );
+
+    And(a=selnot0 , b=selnot1 , out=outa );
+    And(a=outa , b=selnot2 , out=outta );
+    And(a=outta , b=in , out=a );
+
+    And(a=sel[0] , b=selnot1 , out=outb );
+    And(a=outb , b=selnot2 , out=outtb );
+    And(a=outtb , b=in , out=b );
+
+    And(a=selnot0 , b=sel[1] , out=outc );
+    And(a=outc , b=selnot2 , out=outtc );
+    And(a=outtc , b=in , out=c );
+
+    And(a=sel[0] , b=sel[1] , out=outd );
+    And(a=outd , b=selnot2 , out=outtd );
+    And(a=outtd , b=in , out=d );
+
+    And(a=selnot0 , b=selnot1 , out=oute );
+    And(a=oute , b=sel[2] , out=outte );
+    And(a=outte , b=in , out=e );
+
+    And(a=sel[0] , b=selnot1 , out=outf );
+    And(a=outf , b=sel[2] , out=outtf );
+    And(a=outtf , b=in , out=f );
+
+    And(a=selnot0 , b=sel[1] , out=outg );
+    And(a=outg , b=sel[2] , out=outtg );
+    And(a=outtg , b=in , out=g );
+
+    And(a=sel[0] , b=sel[1] , out=outh );
+    And(a=outh , b=sel[2] , out=outth );
+    And(a=outth , b=in , out=h );
+
+
+    //// Replace this comment with your code.
+}
